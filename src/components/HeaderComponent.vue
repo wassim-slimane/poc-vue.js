@@ -39,7 +39,7 @@ function logout() {
             <RouterLink to="/hasard">Au Hasard</RouterLink>
         </li>    
         <li v-if="connected === true">
-            <RouterLink to="/CRUD">CRUD</RouterLink>
+            <RouterLink to="/crud">CRUD</RouterLink>
         </li>    
         <li v-if="connected === true">
             <button @click="logout">Se déconnecter</button>
