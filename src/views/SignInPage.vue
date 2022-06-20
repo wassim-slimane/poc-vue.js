@@ -21,6 +21,7 @@ const onSubmit = async() => {
     if (response.ok) {
         const tokenJwt = response.headers.get("x-auth-token");
         console.log(tokenJwt);
+        localStorage.user = JSON.stringify(tokenJwt);
     }
     console.log("End request.");
 }
