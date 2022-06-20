@@ -1,14 +1,28 @@
 <script setup>
 import { ref } from "vue";
-import { axios } from "axios"
+import axios from "axios"
+import { stringify } from "postcss";
 
 const email = ref(null);
 const password = ref(null);
 
-function onSubmit() {
-    
-    console.log(email.value);
-    console.log(password.value);
+const onSubmit = async() => {
+    console.log("Sending post request...");
+    const response = await fetch("http://localhost:8080/signup", {
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            email: email.value,
+            password: password.value
+        })
+    })
+    if (response.ok) {
+        const data = await response.json();
+        console.log(data);
+    }
+    console.log("End request.");
 }
 
 </script>
