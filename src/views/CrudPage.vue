@@ -1,23 +1,20 @@
 <script setup>
-import { ref } from "@vue/reactivity";
+import { onMounted, ref } from "vue";
 
-const todoList = ref([
-    {
-        id: 1,
-        title: "title 1",
-        done: false
-    },
-    {
-        id: 2,
-        title: "title 2",
-        done: false
-    },
-    {
-        id: 3,
-        title: "title 3",
-        done: false
-    },
-]);
+let count = 0;
+const todoList = ref([]);
+const chaine = ref(null);
+
+onMounted(() => {
+  if(localStorage.todoList) {
+    todoList.value = JSON.parse(localStorage.todoList);
+  }
+})
+
+function addItem() {
+    todoList.value.push({id: count++, title: chaine.value, done: false});
+    localStorage.setItem('todoList', JSON.stringify(todoList.value));
+}
 </script>
 
 <template>
@@ -27,5 +24,14 @@ const todoList = ref([
         <ul>
             <li v-for="todo in todoList" :key="todo.id">{{todo.title}}</li>
         </ul>
+    </div>
+    <div>
+        <form @submit.prevent="addItem">
+            <div>
+                <label for="chaine">Ajouter une chaine : </label>
+                <input type="text" name="chaine" id="chaine" v-model="chaine">
+            </div>
+            <button type="submit">Ajouter !</button>
+        </form>
     </div>
 </template>
