@@ -4,6 +4,7 @@ import HomePage from "@/views/HomePage.vue";
 import SignInPage from "@/views/SignInPage.vue";
 import SignUpPage from "@/views/SignUpPage.vue";
 import TodoListsPage from "@/views/TodoListsPage.vue";
+import CrudPage from "@/views/CrudPage.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -32,6 +33,11 @@ const router = createRouter({
       path: "/todolists",
       name: "todolists",
       component: TodoListsPage,
+    },
+    {
+      path: "/crud",
+      name: "crud",
+      component: CrudPage,
     },
   ],
 });
